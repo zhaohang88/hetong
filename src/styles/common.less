@@ -1,0 +1,124 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  position: relative;
+}
+
+main {
+  margin-top: 66px;
+  background: #f4f4f4;
+  width: 100%;
+}
+
+// 搜索
+.search-container {
+  width: 100%;
+  background: url('~@/assets/search_bg.png') no-repeat;
+  background-size: 100% 100%;
+
+  .cus-button {
+    width: 134px;
+    height: 62px;
+    line-height: 62px;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    background: #224fd8;
+    font-size: 18px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .search-util {
+    color: #f4f4f4;
+    width: 828px;
+    height: 96px;
+
+    .relate-content > span {
+      font-size: 14px;
+      color: #f0f0f0;
+      &:hover {
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+// 遍历合同
+
+.contract-container {
+  width: 1200px;
+}
+
+.contract-wrap {
+  width: 280px;
+  color: #333;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 4px 7px 0px;
+  position: relative;
+
+  img {
+    width: 280px;
+    height: 380px;
+    object-fit: contain;
+    margin-bottom: -5px;
+  }
+
+  &:hover {
+    color: #ebab4b;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    .file-item-mask {
+      background: rgba(255, 255, 255, 0.3);
+      visibility: visible;
+    }
+  }
+  .file-item-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 380px;
+    margin: 1px 1px 0;
+    z-index: 2;
+    visibility: hidden;
+    // display: none;
+    justify-content: flex-end;
+
+    .file-operate {
+      padding-bottom: 14px;
+      .operate {
+        width: 125px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 20px;
+        text-align: center;
+        cursor: pointer;
+        box-sizing: border-box;
+      }
+      .file-edit {
+        color: #ebab4b;
+        background: #fff;
+        border: 1px solid #ebab4b;
+      }
+      .file-down {
+        background: #ebab4b;
+        color: #fff;
+      }
+    }
+  }
+  .contract-name {
+    height: 46px;
+    line-height: 46px;
+    padding: 0 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: #fff;
+    border-radius: 0 0 4px 4px;
+  }
+}
