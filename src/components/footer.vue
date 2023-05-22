@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer class="footer">
     <img src="@/assets/foot.png" alt="" />
   </footer>
 </template>
@@ -16,4 +16,8 @@ export default {
 }
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.footer, .footer img {
+  width: 100%;
+}
+</style>
