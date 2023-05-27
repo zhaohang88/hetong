@@ -40,7 +40,11 @@
         </el-input>
 
         <div class="pay-container f1 flex column align">
-          <img class="pay-qrcode" src="@/assets/qrcode.png" alt="" />
+          <div class="pay-qrcode-container">
+            <img class="pay-qrcode" src="@/assets/qrcode.png" alt="微信二维码" title="微信二维码" />
+            <!-- TODO -->
+            <iframe ref="zfb" width="200px" height="200px"></iframe>
+          </div>
           <div class="alter">支付定金会优先安排律师</div>
           <div class="pay-alter">支付金额：<span class="pay">￥ 199.99</span></div>
 
@@ -57,6 +61,8 @@
 </template>
 
 <script>
+import Vue from 'vue';
+
 export default {
   name: '',
   data() {
@@ -68,8 +74,29 @@ export default {
       }
     }
   },
-  mounted() {},
+  mounted() { },
   methods: {
+    async getZfb() {
+      console.log(this.$refs.zfb);
+      console.log(this.$refs.zfb.contentWindow.document.body);
+      this.$refs.zfb.contentWindow.document.body.innerHTML = `
+        <form id='alipaysubmit' name='alipaysubmit' action='https://openapi.alipay.com/gateway.do?charset=utf-8' method='post'>
+          <input type='hidden' name='app_id' value='2021003182683809' /><input type='hidden' name='charset' value='utf-8' />
+          <input type='hidden' name='format' value='JSON' />
+          <input type='hidden' name='version' value='1.0' />
+          <input type='hidden' name='sign_type' value='RSA2' />
+          <input type='hidden' name='timestamp' value='2023-05-19 22:16:21' />
+          <input type='hidden' name='notify_url' value='http://www.97284.com/api/Ailnotify/index' />
+          <input type='hidden' name='return_url' value='http://www.97284.com/web/' />
+          <input type='hidden' name='method' value='alipay.trade.page.pay' />
+          <input type='hidden' name='biz_content' value='{"product_code":"FAST_INSTANT_TRADE_PAY","out_trade_no":"646784b500b02","total_amount":"0.01","subject":"支付订单描述","qr_pay_mode":4}' />
+          <input type='hidden' name='sign' value='H3Fyf8MQlyzvKPNbOcV982e6yWRHqXMOWuIEqHgyRSuQUZ+z5qU9ru3alSwGouVho0uXriXkfjkztVShZ6g3omuOLM83g7B53DDG305HFxVShg11RAkm/LHXC8Cy2kkJXwDjZHlYuRrt/LgUIWY6msIdLwovosutTxvgnqxWPFCQWjU9pwiqqjdVDYs9NUkUdF+ILKRC4FhPAgvyDCy3zu2/Z6WHD79Fl0Q0LwoBJf0LeJsxyqBLrZK/GQJbVf6FvveRbefjLO0VJbt9SU1qh2aMLt8f5TliXx06ZcJSwDWH55MmY5FL3xwwigkEoRmivOqoxWK2f/SupNVgyiYbgg==' />
+          <input type='submit' value='ok' style='display:none;'>
+        </form>
+      `;
+      this.$refs.zfb.contentWindow.document.getElementById('alipaysubmit').submit();
+    },
+    
     show() {
       this.dialogVisible = true
     },
@@ -158,9 +185,14 @@ export default {
         font-weight: 500;
         color: #000000;
 
+        // .pay-qrcode-container {
+        //   height: 200px;
+        //   display: flex;
+        // }
+
         .pay-qrcode {
-          width: 92px;
-          height: 92px;
+          width: 200px;
+          height: 200px;
           border: 1px solid #000125;
           border-radius: 4px;
         }

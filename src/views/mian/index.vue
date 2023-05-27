@@ -164,8 +164,9 @@ export default {
     },
 
     // dialog
-    showCustomeModel() {
-      this.$refs.customeModel.show()
+    async showCustomeModel() {
+      await this.$refs.customeModel.show()
+      await this.$refs.customeModel.getZfb()
     },
 
     showExamineModel() {
